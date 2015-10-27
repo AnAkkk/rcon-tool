@@ -97,9 +97,9 @@ class Gameserver(object):
       else:
         return False, "Failed to connect to the server"
 
-      player = q.player()
+      '''player = q.player()
       if len(player):
-        self.player = player
+        self.player = player'''
 
       if 'ping' in self.info:
         self.info['ping'] = int(self.info['ping'] * 1000)
