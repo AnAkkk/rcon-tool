@@ -1,34 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.19.0 -->
 <interface>
-  <!-- interface-requires gtk+ 3.0 -->
-  <object class="GtkAction" id="act_add_server">
-    <property name="label" translatable="yes">Add Server...</property>
-    <property name="tooltip" translatable="yes">Add a new server to the list</property>
-    <property name="stock_id">gtk-add</property>
-    <property name="is_important">True</property>
-    <signal name="activate" handler="on_act_add_server_activate" swapped="no"/>
-  </object>
-  <object class="GtkAction" id="act_quit">
-    <property name="label" translatable="yes">Quit</property>
-    <property name="tooltip" translatable="yes">Quit RCONTool</property>
-    <property name="stock_id">gtk-quit</property>
-    <signal name="activate" handler="on_act_quit_activate" swapped="no"/>
-  </object>
-  <object class="GtkAction" id="act_remove_server">
-    <property name="label" translatable="yes">Remove Server</property>
-    <property name="tooltip" translatable="yes">Remove selected server from the list</property>
-    <property name="stock_id">gtk-remove</property>
-    <property name="sensitive">False</property>
-    <signal name="activate" handler="on_act_remove_server_activate" swapped="no"/>
-  </object>
-  <object class="GtkToggleAction" id="act_toggle_logging">
-    <property name="label" translatable="yes">Enable Log</property>
-    <property name="tooltip" translatable="yes">Whether or not to enable logging for the selected server</property>
-    <property name="stock_id">gtk-disconnect</property>
-    <property name="is_important">True</property>
-    <property name="sensitive">False</property>
-    <signal name="toggled" handler="on_act_toggle_logging_toggled" swapped="no"/>
-  </object>
+  <requires lib="gtk+" version="3.0"/>
   <object class="GtkAboutDialog" id="about_dialog">
     <property name="can_focus">False</property>
     <property name="border_width">5</property>
@@ -69,6 +42,89 @@ Uses SourceLib Python RCON library.</property>
       </object>
     </child>
   </object>
+  <object class="GtkAction" id="act_add_server">
+    <property name="label" translatable="yes">Add Server...</property>
+    <property name="tooltip" translatable="yes">Add a new server to the list</property>
+    <property name="stock_id">gtk-add</property>
+    <property name="is_important">True</property>
+    <signal name="activate" handler="on_act_add_server_activate" swapped="no"/>
+  </object>
+  <object class="GtkMenu" id="add_server_menu">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <child>
+      <object class="GtkImageMenuItem" id="menuitem3">
+        <property name="related_action">act_add_server</property>
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="use_underline">True</property>
+        <property name="use_stock">True</property>
+      </object>
+    </child>
+  </object>
+  <object class="GtkAction" id="act_quit">
+    <property name="label" translatable="yes">Quit</property>
+    <property name="tooltip" translatable="yes">Quit RCONTool</property>
+    <property name="stock_id">gtk-quit</property>
+    <signal name="activate" handler="on_act_quit_activate" swapped="no"/>
+  </object>
+  <object class="GtkAction" id="act_remove_server">
+    <property name="label" translatable="yes">Remove Server</property>
+    <property name="tooltip" translatable="yes">Remove selected server from the list</property>
+    <property name="stock_id">gtk-remove</property>
+    <property name="sensitive">False</property>
+    <signal name="activate" handler="on_act_remove_server_activate" swapped="no"/>
+  </object>
+  <object class="GtkToggleAction" id="act_toggle_logging">
+    <property name="label" translatable="yes">Enable Log</property>
+    <property name="tooltip" translatable="yes">Whether or not to enable logging for the selected server</property>
+    <property name="stock_id">gtk-disconnect</property>
+    <property name="is_important">True</property>
+    <property name="sensitive">False</property>
+    <signal name="toggled" handler="on_act_toggle_logging_toggled" swapped="no"/>
+  </object>
+  <object class="GtkMenu" id="server_menu">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <child>
+      <object class="GtkImageMenuItem" id="imagemenuitem3">
+        <property name="related_action">act_add_server</property>
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="use_underline">True</property>
+        <property name="use_stock">True</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkSeparatorMenuItem" id="menuitem6">
+        <property name="use_action_appearance">False</property>
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkMenuItem" id="remove_server_menuitem">
+        <property name="related_action">act_remove_server</property>
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkMenuItem" id="change_hostname_menuitem">
+        <property name="use_action_appearance">False</property>
+        <property name="can_focus">False</property>
+        <property name="label" translatable="yes">Change Hostname...</property>
+        <property name="use_underline">True</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkCheckMenuItem" id="logging_menuitem">
+        <property name="related_action">act_toggle_logging</property>
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+      </object>
+    </child>
+  </object>
   <object class="GtkWindow" id="add_server_dialog">
     <property name="can_focus">False</property>
     <property name="border_width">5</property>
@@ -91,6 +147,23 @@ Uses SourceLib Python RCON library.</property>
             <property name="app_paintable">True</property>
             <property name="can_focus">False</property>
             <property name="spacing">5</property>
+            <child internal-child="action_area">
+              <object class="GtkButtonBox" id="infobar-action_area1">
+                <property name="can_focus">False</property>
+                <property name="border_width">5</property>
+                <property name="orientation">vertical</property>
+                <property name="spacing">6</property>
+                <property name="layout_style">end</property>
+                <child>
+                  <placeholder/>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
             <child internal-child="content_area">
               <object class="GtkBox" id="infobar-content_area1">
                 <property name="visible">True</property>
@@ -113,8 +186,8 @@ Uses SourceLib Python RCON library.</property>
                   <object class="GtkLabel" id="query_label">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="xalign">0</property>
                     <property name="label" translatable="yes">Querying server...</property>
+                    <property name="xalign">0</property>
                     <attributes>
                       <attribute name="weight" value="bold"/>
                     </attributes>
@@ -133,23 +206,6 @@ Uses SourceLib Python RCON library.</property>
                 <property name="position">0</property>
               </packing>
             </child>
-            <child internal-child="action_area">
-              <object class="GtkButtonBox" id="infobar-action_area1">
-                <property name="can_focus">False</property>
-                <property name="border_width">5</property>
-                <property name="orientation">vertical</property>
-                <property name="spacing">6</property>
-                <property name="layout_style">end</property>
-                <child>
-                  <placeholder/>
-                </child>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">1</property>
-              </packing>
-            </child>
           </object>
           <packing>
             <property name="expand">True</property>
@@ -165,8 +221,8 @@ Uses SourceLib Python RCON library.</property>
               <object class="GtkLabel" id="label123">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="xalign">1</property>
                 <property name="label" translatable="yes">Server IP/Port:</property>
+                <property name="xalign">1</property>
               </object>
               <packing>
                 <property name="expand">True</property>
@@ -236,7 +292,6 @@ Uses SourceLib Python RCON library.</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <property name="use_action_appearance">False</property>
                 <property name="use_stock">True</property>
                 <signal name="clicked" handler="on_cancel_add_server_clicked" swapped="no"/>
               </object>
@@ -255,7 +310,6 @@ Uses SourceLib Python RCON library.</property>
                 <property name="can_default">True</property>
                 <property name="has_default">True</property>
                 <property name="receives_default">True</property>
-                <property name="use_action_appearance">False</property>
                 <property name="use_stock">True</property>
                 <signal name="clicked" handler="on_confirm_add_server_clicked" swapped="no"/>
               </object>
@@ -276,19 +330,6 @@ Uses SourceLib Python RCON library.</property>
       </object>
     </child>
   </object>
-  <object class="GtkMenu" id="add_server_menu">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <child>
-      <object class="GtkImageMenuItem" id="menuitem3">
-        <property name="related_action">act_add_server</property>
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="use_underline">True</property>
-        <property name="use_stock">True</property>
-      </object>
-    </child>
-  </object>
   <object class="GtkImage" id="image1">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
@@ -306,6 +347,52 @@ Uses SourceLib Python RCON library.</property>
   </object>
   <object class="GtkListStore" id="liststore3"/>
   <object class="GtkListStore" id="liststore4"/>
+  <object class="GtkListStore" id="players_liststore">
+    <columns>
+      <!-- column-name client -->
+      <column type="guint"/>
+      <!-- column-name player_name -->
+      <column type="gchararray"/>
+      <!-- column-name frags -->
+      <column type="guint"/>
+      <!-- column-name playtime -->
+      <column type="gchararray"/>
+    </columns>
+  </object>
+  <object class="GtkTextBuffer" id="pretty_log_buffer"/>
+  <object class="GtkAdjustment" id="query_rate_adjustment">
+    <property name="upper">60</property>
+    <property name="value">1</property>
+    <property name="step_increment">0.10000000000000001</property>
+    <property name="page_increment">1</property>
+  </object>
+  <object class="GtkListStore" id="recent_commands">
+    <columns>
+      <!-- column-name command -->
+      <column type="gchararray"/>
+    </columns>
+  </object>
+  <object class="GtkEntryCompletion" id="rcon_entrycompletion">
+    <property name="model">recent_commands</property>
+    <property name="text_column">0</property>
+    <property name="inline_selection">True</property>
+  </object>
+  <object class="GtkListStore" id="servers_liststore">
+    <columns>
+      <!-- column-name ip -->
+      <column type="gchararray"/>
+      <!-- column-name hostname -->
+      <column type="gchararray"/>
+      <!-- column-name players -->
+      <column type="gchararray"/>
+      <!-- column-name ping -->
+      <column type="guint"/>
+      <!-- column-name map -->
+      <column type="gchararray"/>
+      <!-- column-name connection_status_stock -->
+      <column type="gchararray"/>
+    </columns>
+  </object>
   <object class="GtkWindow" id="main_window">
     <property name="width_request">400</property>
     <property name="height_request">450</property>
@@ -464,8 +551,8 @@ Uses SourceLib Python RCON library.</property>
                     <property name="reorderable">True</property>
                     <property name="search_column">0</property>
                     <property name="fixed_height_mode">True</property>
-                    <signal name="cursor-changed" handler="on_server_list_cursor_changed" swapped="no"/>
                     <signal name="button-press-event" handler="on_server_list_button_press_event" swapped="no"/>
+                    <signal name="cursor-changed" handler="on_server_list_cursor_changed" swapped="no"/>
                     <child internal-child="selection">
                       <object class="GtkTreeSelection" id="treeview-selection1"/>
                     </child>
@@ -609,9 +696,9 @@ Uses SourceLib Python RCON library.</property>
                                   <object class="GtkLabel" id="label11">
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
-                                    <property name="xalign">1</property>
                                     <property name="label" translatable="yes">Hostname:</property>
                                     <property name="justify">right</property>
+                                    <property name="xalign">1</property>
                                   </object>
                                   <packing>
                                     <property name="x_options">GTK_FILL</property>
@@ -621,8 +708,8 @@ Uses SourceLib Python RCON library.</property>
                                   <object class="GtkLabel" id="label12">
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
-                                    <property name="xalign">1</property>
                                     <property name="label" translatable="yes">Game:</property>
+                                    <property name="xalign">1</property>
                                   </object>
                                   <packing>
                                     <property name="top_attach">3</property>
@@ -634,8 +721,8 @@ Uses SourceLib Python RCON library.</property>
                                   <object class="GtkLabel" id="label13">
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
-                                    <property name="xalign">1</property>
                                     <property name="label" translatable="yes">Map:</property>
+                                    <property name="xalign">1</property>
                                   </object>
                                   <packing>
                                     <property name="top_attach">4</property>
@@ -647,8 +734,8 @@ Uses SourceLib Python RCON library.</property>
                                   <object class="GtkLabel" id="label14">
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
-                                    <property name="xalign">1</property>
                                     <property name="label" translatable="yes">Players:</property>
+                                    <property name="xalign">1</property>
                                   </object>
                                   <packing>
                                     <property name="top_attach">5</property>
@@ -660,9 +747,9 @@ Uses SourceLib Python RCON library.</property>
                                   <object class="GtkLabel" id="label15">
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
-                                    <property name="xalign">1</property>
                                     <property name="label" translatable="yes">IP:</property>
                                     <property name="justify">right</property>
+                                    <property name="xalign">1</property>
                                   </object>
                                   <packing>
                                     <property name="top_attach">1</property>
@@ -742,8 +829,8 @@ Uses SourceLib Python RCON library.</property>
                                   <object class="GtkLabel" id="label21">
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
-                                    <property name="xalign">1</property>
                                     <property name="label" translatable="yes">Ping:</property>
+                                    <property name="xalign">1</property>
                                   </object>
                                   <packing>
                                     <property name="top_attach">6</property>
@@ -769,8 +856,8 @@ Uses SourceLib Python RCON library.</property>
                                   <object class="GtkLabel" id="label16">
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
-                                    <property name="xalign">1</property>
                                     <property name="label" translatable="yes">Port:</property>
+                                    <property name="xalign">1</property>
                                   </object>
                                   <packing>
                                     <property name="top_attach">2</property>
@@ -827,7 +914,7 @@ Uses SourceLib Python RCON library.</property>
                         </child>
                       </object>
                       <packing>
-                        <property name="expand">False</property>
+                        <property name="expand">True</property>
                         <property name="fill">True</property>
                         <property name="position">0</property>
                       </packing>
@@ -875,8 +962,8 @@ Uses SourceLib Python RCON library.</property>
                                             <property name="secondary_icon_sensitive">False</property>
                                             <property name="secondary_icon_tooltip_text" translatable="yes">Verify RCON Password</property>
                                             <property name="placeholder_text">Enter RCON Password...</property>
-                                            <signal name="changed" handler="on_rcon_password_changed" swapped="no"/>
                                             <signal name="activate" handler="on_rcon_password_activate" swapped="no"/>
+                                            <signal name="changed" handler="on_rcon_password_changed" swapped="no"/>
                                             <signal name="icon-press" handler="on_rcon_password_icon_press" swapped="no"/>
                                           </object>
                                           <packing>
@@ -897,7 +984,6 @@ Uses SourceLib Python RCON library.</property>
                                                 <property name="can_focus">True</property>
                                                 <property name="receives_default">False</property>
                                                 <property name="tooltip_text" translatable="yes">Whether or not to display the RCON server in plaintext or password symbols</property>
-                                                <property name="use_action_appearance">False</property>
                                                 <property name="xalign">0</property>
                                                 <property name="draw_indicator">True</property>
                                                 <signal name="toggled" handler="on_show_rcon_toggle_toggled" swapped="no"/>
@@ -916,7 +1002,6 @@ Uses SourceLib Python RCON library.</property>
                                                 <property name="can_focus">True</property>
                                                 <property name="receives_default">False</property>
                                                 <property name="tooltip_text" translatable="yes">Whether or not to save the RCON password between sessions</property>
-                                                <property name="use_action_appearance">False</property>
                                                 <property name="xalign">0</property>
                                                 <property name="active">True</property>
                                                 <property name="draw_indicator">True</property>
@@ -1036,7 +1121,6 @@ Note:&lt;i&gt; Must be connected to server log&lt;/i&gt;</property>
                                                 <property name="can_focus">True</property>
                                                 <property name="receives_default">False</property>
                                                 <property name="tooltip_text" translatable="yes">Notify if server is down for more than 5 seconds</property>
-                                                <property name="use_action_appearance">False</property>
                                                 <property name="xalign">0</property>
                                                 <property name="draw_indicator">True</property>
                                               </object>
@@ -1054,7 +1138,6 @@ Note:&lt;i&gt; Must be connected to server log&lt;/i&gt;</property>
                                                 <property name="can_focus">True</property>
                                                 <property name="receives_default">False</property>
                                                 <property name="tooltip_text" translatable="yes">Notify on map change</property>
-                                                <property name="use_action_appearance">False</property>
                                                 <property name="xalign">0</property>
                                                 <property name="draw_indicator">True</property>
                                               </object>
@@ -1127,7 +1210,6 @@ Note:&lt;i&gt; Must be connected to server log&lt;/i&gt;</property>
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">True</property>
                                         <property name="tooltip_text" translatable="yes">Display output from logs</property>
-                                        <property name="use_action_appearance">False</property>
                                         <property name="active">True</property>
                                       </object>
                                       <packing>
@@ -1144,7 +1226,6 @@ Note:&lt;i&gt; Must be connected to server log&lt;/i&gt;</property>
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">True</property>
                                         <property name="tooltip_text" translatable="yes">Display output from RCON commands</property>
-                                        <property name="use_action_appearance">False</property>
                                         <property name="active">True</property>
                                       </object>
                                       <packing>
@@ -1166,7 +1247,6 @@ Note:&lt;i&gt; Must be connected to server log&lt;/i&gt;</property>
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">True</property>
                                         <property name="tooltip_text" translatable="yes">Stick to the bottom of the log</property>
-                                        <property name="use_action_appearance">False</property>
                                         <property name="active">True</property>
                                         <signal name="toggled" handler="on_stick_to_bottom_toggled" swapped="no"/>
                                         <child>
@@ -1226,15 +1306,14 @@ Note:&lt;i&gt; Must be connected to server log&lt;/i&gt;</property>
                                 <property name="max_length">510</property>
                                 <property name="invisible_char">●</property>
                                 <property name="truncate_multiline">True</property>
-                                <property name="invisible_char_set">True</property>
                                 <property name="secondary_icon_stock">gtk-find</property>
                                 <property name="primary_icon_activatable">False</property>
                                 <property name="secondary_icon_sensitive">False</property>
                                 <property name="secondary_icon_tooltip_text" translatable="yes">List all commands containing these characters</property>
                                 <property name="placeholder_text">Type an RCON command...</property>
                                 <property name="completion">rcon_entrycompletion</property>
-                                <signal name="changed" handler="on_rcon_input_changed" swapped="no"/>
                                 <signal name="activate" handler="on_rcon_input_activate" swapped="no"/>
+                                <signal name="changed" handler="on_rcon_input_changed" swapped="no"/>
                                 <signal name="icon-press" handler="on_rcon_input_icon_press" swapped="no"/>
                               </object>
                               <packing>
@@ -1289,7 +1368,6 @@ Note:&lt;i&gt; Must be connected to server log&lt;/i&gt;</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="invisible_char">●</property>
-                                <property name="invisible_char_set">True</property>
                                 <property name="primary_icon_activatable">False</property>
                                 <property name="secondary_icon_activatable">False</property>
                                 <property name="placeholder_text">Type a chat message...</property>
@@ -1354,7 +1432,6 @@ Note:&lt;i&gt; Must be connected to server log&lt;/i&gt;</property>
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">True</property>
-                                    <property name="use_action_appearance">False</property>
                                   </object>
                                   <packing>
                                     <property name="expand">False</property>
@@ -1416,7 +1493,6 @@ Note:&lt;i&gt; Must be connected to server log&lt;/i&gt;</property>
                                                 <property name="visible">True</property>
                                                 <property name="can_focus">True</property>
                                                 <property name="receives_default">True</property>
-                                                <property name="use_action_appearance">False</property>
                                               </object>
                                               <packing>
                                                 <property name="expand">False</property>
@@ -1431,7 +1507,6 @@ Note:&lt;i&gt; Must be connected to server log&lt;/i&gt;</property>
                                                 <property name="visible">True</property>
                                                 <property name="can_focus">True</property>
                                                 <property name="receives_default">True</property>
-                                                <property name="use_action_appearance">False</property>
                                               </object>
                                               <packing>
                                                 <property name="expand">False</property>
@@ -1446,7 +1521,6 @@ Note:&lt;i&gt; Must be connected to server log&lt;/i&gt;</property>
                                                 <property name="visible">True</property>
                                                 <property name="can_focus">True</property>
                                                 <property name="receives_default">True</property>
-                                                <property name="use_action_appearance">False</property>
                                               </object>
                                               <packing>
                                                 <property name="expand">False</property>
@@ -1500,14 +1574,14 @@ Note:&lt;i&gt; Must be connected to server log&lt;/i&gt;</property>
                         </child>
                       </object>
                       <packing>
-                        <property name="expand">False</property>
+                        <property name="expand">True</property>
                         <property name="fill">True</property>
                         <property name="position">1</property>
                       </packing>
                     </child>
                   </object>
                   <packing>
-                    <property name="expand">False</property>
+                    <property name="expand">True</property>
                     <property name="fill">True</property>
                     <property name="position">0</property>
                   </packing>
@@ -1520,7 +1594,6 @@ Note:&lt;i&gt; Must be connected to server log&lt;/i&gt;</property>
                     <property name="receives_default">True</property>
                     <property name="margin_top">10</property>
                     <property name="margin_bottom">10</property>
-                    <property name="use_action_appearance">False</property>
                     <property name="relief">none</property>
                     <property name="focus_on_click">False</property>
                     <signal name="clicked" handler="on_expand_player_list_clicked" swapped="no"/>
@@ -1533,11 +1606,11 @@ Note:&lt;i&gt; Must be connected to server log&lt;/i&gt;</property>
                           <object class="GtkLabel" id="label18">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="xalign">0.44999998807907104</property>
-                            <property name="yalign">1</property>
                             <property name="ypad">5</property>
                             <property name="label" translatable="yes">Player List</property>
                             <property name="angle">90</property>
+                            <property name="xalign">0.44999998807907104</property>
+                            <property name="yalign">1</property>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -1643,7 +1716,7 @@ Note:&lt;i&gt; Must be connected to server log&lt;/i&gt;</property>
                     </child>
                   </object>
                   <packing>
-                    <property name="expand">True</property>
+                    <property name="expand">False</property>
                     <property name="fill">True</property>
                     <property name="position">2</property>
                   </packing>
@@ -1675,94 +1748,6 @@ Note:&lt;i&gt; Must be connected to server log&lt;/i&gt;</property>
         </child>
       </object>
     </child>
-  </object>
-  <object class="GtkListStore" id="players_liststore">
-    <columns>
-      <!-- column-name client -->
-      <column type="guint"/>
-      <!-- column-name player_name -->
-      <column type="gchararray"/>
-      <!-- column-name frags -->
-      <column type="guint"/>
-      <!-- column-name playtime -->
-      <column type="gchararray"/>
-    </columns>
-  </object>
-  <object class="GtkTextBuffer" id="pretty_log_buffer"/>
-  <object class="GtkAdjustment" id="query_rate_adjustment">
-    <property name="upper">60</property>
-    <property name="value">1</property>
-    <property name="step_increment">0.10000000000000001</property>
-    <property name="page_increment">1</property>
-  </object>
-  <object class="GtkListStore" id="recent_commands">
-    <columns>
-      <!-- column-name command -->
-      <column type="gchararray"/>
-    </columns>
-  </object>
-  <object class="GtkEntryCompletion" id="rcon_entrycompletion">
-    <property name="model">recent_commands</property>
-    <property name="text_column">0</property>
-    <property name="inline_selection">True</property>
-  </object>
-  <object class="GtkMenu" id="server_menu">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <child>
-      <object class="GtkImageMenuItem" id="imagemenuitem3">
-        <property name="related_action">act_add_server</property>
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="use_underline">True</property>
-        <property name="use_stock">True</property>
-      </object>
-    </child>
-    <child>
-      <object class="GtkSeparatorMenuItem" id="menuitem6">
-        <property name="use_action_appearance">False</property>
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
-      </object>
-    </child>
-    <child>
-      <object class="GtkMenuItem" id="remove_server_menuitem">
-        <property name="related_action">act_remove_server</property>
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
-      </object>
-    </child>
-    <child>
-      <object class="GtkMenuItem" id="change_hostname_menuitem">
-        <property name="use_action_appearance">False</property>
-        <property name="can_focus">False</property>
-        <property name="label" translatable="yes">Change Hostname...</property>
-        <property name="use_underline">True</property>
-      </object>
-    </child>
-    <child>
-      <object class="GtkCheckMenuItem" id="logging_menuitem">
-        <property name="related_action">act_toggle_logging</property>
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
-      </object>
-    </child>
-  </object>
-  <object class="GtkListStore" id="servers_liststore">
-    <columns>
-      <!-- column-name ip -->
-      <column type="gchararray"/>
-      <!-- column-name hostname -->
-      <column type="gchararray"/>
-      <!-- column-name players -->
-      <column type="gchararray"/>
-      <!-- column-name ping -->
-      <column type="guint"/>
-      <!-- column-name map -->
-      <column type="gchararray"/>
-      <!-- column-name connection_status_stock -->
-      <column type="gchararray"/>
-    </columns>
   </object>
   <object class="GtkTextTagTable" id="text_tags">
     <child type="tag">
